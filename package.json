@@ -1,0 +1,13 @@
+{
+  "name": "esms-swc",
+  "main": "dist/main.js",
+  "packageManager": "yarn@3.1.1",
+  "scripts": {
+    "build": "rollup -f iife -i src/index.js -o dist/main.js"
+  },
+  "devDependencies": {
+    "eslint": "^8.4.0",
+    "rollup": "^2.60.2",
+    "serve": "^13.0.2"
+  }
+}
