@@ -1,10 +1,16 @@
 {
   "name": "esms-swc",
-  "main": "dist/main.js",
+  "description": "The es-module-shim integration with swc compiler.",
+  "version": "0.1.0",
   "packageManager": "yarn@3.1.1",
+  "main": "dist/main.js",
   "scripts": {
-    "build": "rollup -f iife -i src/index.js -o dist/main.js"
+    "build": "rollup -f iife -i src/index.js -o dist/main.js",
+    "prepack": "yarn build"
   },
+  "files": [
+    "dist/"
+  ],
   "devDependencies": {
     "eslint": "^8.4.0",
     "rollup": "^2.60.2",
