@@ -3,9 +3,11 @@
   "description": "The es-module-shim integration with swc compiler.",
   "version": "0.1.0",
   "packageManager": "yarn@3.1.1",
+  "type": "module",
   "main": "dist/main.js",
   "scripts": {
     "build": "rollup -f iife -i src/index.js -o dist/main.js",
+    "test": "node test/server.mjs",
     "prepack": "yarn build"
   },
   "files": [
@@ -13,7 +15,8 @@
   ],
   "devDependencies": {
     "eslint": "^8.4.0",
+    "open": "^8.4.0",
     "rollup": "^2.60.2",
-    "serve": "^13.0.2"
+    "serve-handler": "^6.1.3"
   }
 }
