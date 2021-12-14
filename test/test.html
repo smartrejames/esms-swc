@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Mocha Runner</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://unpkg.com/mocha@9/mocha.css" />
+  </head>
+  <body>
+    <div id="mocha"></div>
+    <script type="module" src="https://unpkg.com/mocha@9/mocha-es2018.js"></script>
+    <script defer src="../dist/main.js"></script>
+    <script
+      defer
+      src="https://unpkg.com/es-module-shims@1/dist/es-module-shims.wasm.js"
+    ></script>
+    <script type="importmap-shim">
+      {
+        "imports": {
+          "chai": "https://unpkg.com/@esm-bundle/chai@4/esm/chai.js",
+          "app": "/test/index.ts"
+        }
+      }
+    </script>
+    <script type="module-shim">
+      mocha.setup({ ui: 'bdd', retries: 0, checkLeaks: true })
+      import('app')
+        .then(() =>
+          mocha.run(failures => {
+            if (failures) {
+              console.error(failures)
+              fetch('/error', {
+                method: 'POST',
+                body: String(failures)
+              })
+            } else {
+              fetch('/done')
+            }
+          })
+        )
+        .catch(e => {
+          console.error(e)
+          fetch('/error', {
+            method: 'POST',
+            body: String(e)
+          })
+        })
+    </script>
+  </body>
+</html>
