@@ -1,4 +1,5 @@
 let jsContentType = /^(?:text|application)\/javascript(?:;|$)/
+let jsExtension = /\.(?:tsx?|jsx?)(?:[?#]|$)/
 let compiler
 
 function createBlob(source, type = 'text/javascript') {
@@ -49,7 +50,7 @@ function transform(url, options) {
     if (
       !response.ok ||
       !response.url.startsWith(location.origin) ||
-      !jsContentType.test(contentType)
+      !(jsContentType.test(contentType) || jsExtension.test(response.url))
     ) {
       return response
     }
@@ -80,7 +81,6 @@ Object.defineProperty(transform, 'compiler', {
     compiler = c
   }
 })
-
 
 export default transform
 export { dynamicImport }
