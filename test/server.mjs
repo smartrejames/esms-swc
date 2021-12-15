@@ -6,7 +6,7 @@ import open from 'open'
 
 const port = 3000
 
-let shouldExit = false
+let shouldExit = true
 let failTimeout, browserTimeout
 
 function setBrowserTimeout() {
