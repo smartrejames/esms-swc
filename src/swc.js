@@ -1,4 +1,5 @@
-import { dynamicImport } from './transform'
+import { option, dynamicImport } from './common'
+
 let swcConfig = {
   jsc: {
     parser: {
@@ -10,11 +11,11 @@ let swcConfig = {
   inlineSourcesContent: true
 }
 
-let swcPromise
-
-let swcCDNUrl = 'https://unpkg.com/@swc/wasm-web@1/wasm.js'
+let swcCDNUrl = `${option.cdn}/@swc/wasm-web@${option.swcVersion}/wasm.js`
 
 let tsRegex = /\/[a-zA-Z0-9_.@-]+\.tsx?(?:[?#]|$)/
+
+let swcPromise
 
 function initSwc() {
   return dynamicImport(swcCDNUrl).then(mod => mod.default().then(() => mod))
