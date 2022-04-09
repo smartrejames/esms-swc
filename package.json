@@ -1,7 +1,7 @@
 {
   "name": "esms-swc",
   "description": "The es-module-shim integration with swc compiler.",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "packageManager": "yarn@3.2.0",
   "type": "module",
   "main": "dist/main.js",
