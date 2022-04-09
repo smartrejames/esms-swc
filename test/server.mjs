@@ -18,9 +18,9 @@ function setBrowserTimeout() {
   }, 10000)
 }
 
-const serveConf = readFile('./serve.json', 'utf8').then(text =>
-  JSON.parse(text)
-)
+const serveConf = readFile('./serve.json', 'utf8')
+  .then(text => JSON.parse(text))
+  .catch(() => {})
 
 const server = createServer(async (request, response) => {
   setBrowserTimeout()

@@ -8,21 +8,18 @@
   </head>
   <body>
     <div id="mocha"></div>
-    <script type="module" src="https://unpkg.com/mocha@9/mocha-es2018.js"></script>
-    <script defer src="../dist/main.js"></script>
-    <script
-      defer
-      src="https://unpkg.com/es-module-shims@1/dist/es-module-shims.wasm.js"
-    ></script>
+    <script src="../dist/main.js"></script>
     <script type="importmap-shim">
       {
         "imports": {
-          "chai": "https://unpkg.com/@esm-bundle/chai@4/esm/chai.js",
+          "chai": "//unpkg.com/@esm-bundle/chai@4/esm/chai.js",
+          "mocha": "//unpkg.com/mocha@9/mocha-es2018.js",
           "app": "/test/index.ts"
         }
       }
     </script>
     <script type="module-shim">
+      await import('mocha')
       mocha.setup({ ui: 'bdd', retries: 0, checkLeaks: true })
       import('app')
         .then(() =>
